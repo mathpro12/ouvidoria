@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/cadastro', [
+    'uses' => 'Auth\RegisterController@getCreate',
+    'as' => 'get.create',
+]);
+
+Route::post('/cadastro', [
+    'uses' => 'Auth\RegisterController@postCreate',
+    'as' => 'post.create',
+]);
