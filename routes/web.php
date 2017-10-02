@@ -24,3 +24,13 @@ Route::post('/cadastro', [
     'uses' => 'Auth\RegisterController@postCreate',
     'as' => 'post.create',
 ]);
+
+Route::get('/statuses', [
+    'uses' => 'Statuses\ExampleController@lists',
+    'as' => 'get.stauses',
+]);
+
+Route::post('/statuses', [
+    'uses' => 'Statuses\ExampleController@store',
+    'as' => 'post.statuses',
+]);
