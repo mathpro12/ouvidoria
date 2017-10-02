@@ -37,7 +37,7 @@ class ExampleController extends Controller
         try {
             $status = Status::all();
 
-            var_dump($status);
+            return $status;
 
             return 'Deu Bom';
         } catch (\Exception $e) {
