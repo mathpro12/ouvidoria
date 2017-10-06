@@ -48,13 +48,14 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request, [
             'name' => 'required|max:255',
-            'cpf' => 'required|size:14'
+            'cpf' => 'required|size:14',
             'email' => 'required|email|max:255|unique:pessoas',
             'address' => 'required|max:255',
             'number' => 'required|max:255',
             'address_suplement' => 'required|max:255',
             'neighborhood' => 'required|max:255',
             'state' => 'required|max:25',
+            'city' => 'required|max:255',
             'password' => 'required|string|min:6',
         ]);
 
