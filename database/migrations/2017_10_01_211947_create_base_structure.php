@@ -26,6 +26,7 @@ class CreateBaseStructure extends Migration
             $table->string('estado');
             $table->string('senha');
 
+            $table->rememberToken();
             $table->timestamps();
         });
 
