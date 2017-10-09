@@ -15,6 +15,6 @@ class Status extends Model
 
     protected $fillable = [
         'id',
-        'nome',
+        'name',
     ];
 }

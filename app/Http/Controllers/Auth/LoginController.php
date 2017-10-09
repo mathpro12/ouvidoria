@@ -66,10 +66,7 @@ class LoginController extends Controller
             'password'
         ]);
 
-        if(!Auth::attempt([
-            'email' => $request->get('email'),
-            'senha' => $request->get('password')
-        ])) {
+        if(!Auth::attempt($credentials)) {
             throw new \Exception('Não autorizado!');
         }
 
