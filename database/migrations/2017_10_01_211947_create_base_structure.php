@@ -13,18 +13,18 @@ class CreateBaseStructure extends Migration
      */
     public function up()
     {
-        Schema::create('pessoas', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('cpf', 14);
             $table->string('email');
-            $table->string('rua');
-            $table->string('numero');
-            $table->string('complemento');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('senha');
+            $table->string('password');
+            $table->string('name');
+            $table->string('cpf', 14);
+            $table->string('address');
+            $table->string('number');
+            $table->string('address_suplement');
+            $table->string('neighborhood');
+            $table->string('city');
+            $table->string('state');
 
             $table->rememberToken();
             $table->timestamps();
@@ -32,40 +32,40 @@ class CreateBaseStructure extends Migration
 
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('name');
 
             $table->timestamps();
         });
 
-        Schema::create('secretarias', function (Blueprint $table) {
+        Schema::create('secretaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('responsavel');
+            $table->string('name');
+            $table->string('responsible');
 
             $table->timestamps();
         });
 
-        Schema::create('tipos', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('descricao');
+            $table->string('name');
+            $table->string('description');
 
             $table->timestamps();
         });
 
-        Schema::create('solicitacoes', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pessoa')->unsigned();
-            $table->integer('tipo')->unsigned();
-            $table->integer('secretaria')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('type_id')->unsigned();
+            $table->integer('secretary_id')->unsigned();
             $table->integer('status')->unsigned();
-            $table->string('descricao');
+            $table->string('description');
 
             $table->timestamps();
 
-            $table->foreign('pessoa')->references('id')->on('pessoas');
-            $table->foreign('tipo')->references('id')->on('tipos');
-            $table->foreign('secretaria')->references('id')->on('secretarias');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('secretary_id')->references('id')->on('secretaries');
             $table->foreign('status')->references('id')->on('statuses');
         });
     }
@@ -77,10 +77,10 @@ class CreateBaseStructure extends Migration
      */
     public function down()
     {
-        Schema::drop('solicitacoes');
-        Schema::drop('pessoas');
+        Schema::drop('requests');
+        Schema::drop('users');
         Schema::drop('statuses');
-        Schema::drop('secretarias');
-        Schema::drop('tipos');
+        Schema::drop('secretaries');
+        Schema::drop('types');
     }
 }
