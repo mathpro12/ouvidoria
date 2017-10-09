@@ -69,9 +69,6 @@ class RegisterController extends Controller
 
     /**
      * Returns the view of register
-     *
-     * @param  array  $data
-     * @return \App\User
      */
     protected function getCreate()
     {
@@ -88,9 +85,12 @@ class RegisterController extends Controller
         $this->validator($data);
 
         $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
 
-        return 'Saved';
-        //return redirect()
+        try {
+            $user = User::create($data);
+            return 'Saved';
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 }
