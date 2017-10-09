@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
+class Request extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'statuses';
+    protected $table = 'requests';
 
     protected $fillable = [
-        'id',
-        'name',
+        'user_id',
+        'type_id',
+        'secretary_id',
+        'status',
+        'description',
     ];
 }

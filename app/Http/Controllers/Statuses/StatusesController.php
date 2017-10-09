@@ -9,7 +9,7 @@ use Validator;
 
 use App\Models\Status;
 
-class ExampleController extends Controller
+class StatusesController extends Controller
 {
     public function __construct()
     {
@@ -18,18 +18,19 @@ class ExampleController extends Controller
 
     public function store(Request $request)
     {
-        $this->validateData($request);
+        $data = $request->all();
+
+        $this->validateData($data);
 
         try {
-            $status = new Status();
-            $status->nome = $request->get('nome');
+            $status = Status::create($data);
 
-            return 'Deu Bom';
+            return 'Saved';
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return 'Deu Ruim';
+        return 'Failed';
     }
 
     public function lists()
@@ -55,10 +56,10 @@ class ExampleController extends Controller
     private function validateData(Request $request)
     {
         $rules = [
-            'nome' => 'required',
+            'name' => 'required',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request, $rules);
 
         if ($validator->fails()) {
             throw new \Exception();

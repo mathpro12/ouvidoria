@@ -12,19 +12,22 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'pessoas';
+    protected $table = 'users';
 
     protected $fillable = [
-        'id',
-        'nome',
-        'cpf',
         'email',
-        'rua',
-        'numero',
-        'complemento',
-        'bairro',
-        'cidade',
-        'estado',
-        'senha',
+        'password',
+        'name',
+        'cpf',
+        'address',
+        'number',
+        'address_suplement',
+        'neighborhood',
+        'city',
+        'state',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }
