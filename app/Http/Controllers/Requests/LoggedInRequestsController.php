@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\Request;
+use App\Models\Request as RequestModel;
 
-class RequestsController extends Controller
+class LoggedInRequestsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,7 @@ class RequestsController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
     /**
@@ -38,25 +38,19 @@ class RequestsController extends Controller
         return true;
     }
 
-    public function lists(Request $request)
+    public function getCreate(Request $request)
     {
-        try {
-            $requests = Request::all();
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-        }
-
-        return $requests;
+        return view();
     }
 
-    public function store(Request $request)
+    public function postCreate(Request $request)
     {
         $data = $request->all();
 
         $this->validator($data);
 
         try {
-            $request = Request::create($data);
+            $request = RequestModel::create($data);
 
             return 'Saved';
         } catch (\Exception $e) {

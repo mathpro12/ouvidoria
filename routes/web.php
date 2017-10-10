@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('cadastro')->group(function () {
+Route::prefix('register')->group(function () {
     Route::get('/', [
         'uses' => 'Auth\RegisterController@getCreate',
         'as' => 'get.create',
@@ -28,18 +28,37 @@ Route::prefix('cadastro')->group(function () {
 });
 
 Route::prefix('/login')->group(function () {
+    Route::get('/', [
+        'uses' => 'Auth\LoginController@getLogin',
+        'as' => 'login',
+    ]);
+
     Route::post('/', [
-        'uses' => 'Auth\LoginController@login',
+        'uses' => 'Auth\LoginController@postLogin',
         'as' => 'post.login',
     ]);
 });
 
-Route::get('/statuses', [
-    'uses' => 'Statuses\ExampleController@lists',
-    'as' => 'get.stauses',
-]);
+Route::prefix('/statuses')->group(function () {
+    Route::get('/', [
+        'uses' => 'Statuses\ExampleController@lists',
+        'as' => 'get.stauses',
+    ]);
 
-Route::post('/statuses', [
-    'uses' => 'Statuses\ExampleController@store',
-    'as' => 'post.statuses',
-]);
+    Route::post('/', [
+        'uses' => 'Statuses\ExampleController@store',
+        'as' => 'post.statuses',
+    ]);
+});
+
+Route::prefix('/logged-in-requests')->group(function () {
+    Route::get('/', [
+        'uses' => 'Requests\LoggedInRequestsController@getCreate',
+        'as' => 'get.logged-in-requests',
+    ]);
+
+    Route::post('/', [
+        'uses' => 'Requests\LoggedInRequestsController@postCreate',
+        'as' => 'post.logged-in-requests',
+    ]);
+});

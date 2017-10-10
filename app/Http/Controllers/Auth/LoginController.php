@@ -57,7 +57,12 @@ class LoginController extends Controller
         return true;
     }
 
-    public function login(Request $request)
+    public function getLogin()
+    {
+        return 'GG';
+    }
+
+    public function postLogin(Request $request)
     {
         $this->validator($request->all());
 
