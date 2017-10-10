@@ -42,7 +42,7 @@ class AnonymousRequestsController extends Controller
 
     public function getCreate(Request $request)
     {
-        return view();
+        return 'GG';
     }
 
     public function postCreate(Request $request)

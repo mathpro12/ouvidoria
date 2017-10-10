@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'uses' => 'Menu\MenuController@get',
+    'as' => 'get.menu',
+]);
 
 Route::prefix('register')->group(function () {
     Route::get('/', [
