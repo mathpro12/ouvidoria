@@ -14,10 +14,11 @@ class Request extends Model
     protected $table = 'requests';
 
     protected $fillable = [
+        'hash_id',
         'user_id',
         'type_id',
         'secretary_id',
-        'status',
+        'status_id',
         'description',
     ];
 }

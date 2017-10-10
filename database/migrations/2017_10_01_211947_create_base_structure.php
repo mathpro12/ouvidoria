@@ -55,10 +55,11 @@ class CreateBaseStructure extends Migration
 
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->string('hash', 8)->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('type_id')->unsigned();
             $table->integer('secretary_id')->unsigned();
-            $table->integer('status')->unsigned();
+            $table->integer('status_id')->unsigned();
             $table->string('description');
 
             $table->timestamps();
@@ -66,7 +67,7 @@ class CreateBaseStructure extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('secretary_id')->references('id')->on('secretaries');
-            $table->foreign('status')->references('id')->on('statuses');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 

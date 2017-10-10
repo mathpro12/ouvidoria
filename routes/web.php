@@ -39,18 +39,6 @@ Route::prefix('/login')->group(function () {
     ]);
 });
 
-Route::prefix('/statuses')->group(function () {
-    Route::get('/', [
-        'uses' => 'Statuses\ExampleController@lists',
-        'as' => 'get.stauses',
-    ]);
-
-    Route::post('/', [
-        'uses' => 'Statuses\ExampleController@store',
-        'as' => 'post.statuses',
-    ]);
-});
-
 Route::prefix('/logged-in-requests')->group(function () {
     Route::get('/', [
         'uses' => 'Requests\LoggedInRequestsController@getCreate',
@@ -62,3 +50,16 @@ Route::prefix('/logged-in-requests')->group(function () {
         'as' => 'post.logged-in-requests',
     ]);
 });
+
+Route::prefix('/anonymous-requests')->group(function () {
+    Route::get('/', [
+        'uses' => 'Requests\AnonymousRequestsController@getCreate',
+        'as' => 'get.anonymous-requests',
+    ]);
+
+    Route::post('/', [
+        'uses' => 'Requests\AnonymousRequestsController@postCreate',
+        'as' => 'post.logged-in-requests',
+    ]);
+});
+
