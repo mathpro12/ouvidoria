@@ -7,8 +7,8 @@
 </head>
 
 <body>
-    @include('layouts.partials.errors');
+    @include('layouts.partials.errors')
 
-    @yield('content');
+    @yield('content')
 </body>
 </html>
