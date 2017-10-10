@@ -59,7 +59,7 @@ class LoginController extends Controller
 
     public function getLogin()
     {
-        return 'GG';
+        return view('login.login');
     }
 
     public function postLogin(Request $request)
@@ -72,7 +72,7 @@ class LoginController extends Controller
         ]);
 
         if(!Auth::attempt($credentials)) {
-            throw new \Exception('Não autorizado!');
+            return back()->withErrors('Dados Inválidos');
         }
 
         return 'Success';
