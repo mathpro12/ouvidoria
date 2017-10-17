@@ -19,19 +19,19 @@ Route::get('/', [
 Route::prefix('register')->group(function () {
     Route::get('/', [
         'uses' => 'Auth\RegisterController@getCreate',
-        'as' => 'get.create',
+        'as' => 'get.register',
     ]);
 
     Route::post('/', [
         'uses' => 'Auth\RegisterController@postCreate',
-        'as' => 'post.create',
+        'as' => 'post.register',
     ]);
 });
 
 Route::prefix('/login')->group(function () {
     Route::get('/', [
         'uses' => 'Auth\LoginController@getLogin',
-        'as' => 'login',
+        'as' => 'get.login',
     ]);
 
     Route::post('/', [
@@ -60,7 +60,7 @@ Route::prefix('/anonymous-requests')->group(function () {
 
     Route::post('/', [
         'uses' => 'Requests\AnonymousRequestsController@postCreate',
-        'as' => 'post.logged-in-requests',
+        'as' => 'post.anonymous-requests',
     ]);
 });
 
