@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Requests;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 use App\Models\Request as RequestModel;
 
@@ -26,6 +28,7 @@ class LoggedInRequestsController extends Controller
     protected function validator(array $request)
     {
         $validator = Validator::make($request, [
+            'user_id' => 'required|integer',
             'type_id' => 'required|integer',
             'secretary_id' => 'required|integer',
             'description' => 'required',
@@ -40,12 +43,14 @@ class LoggedInRequestsController extends Controller
 
     public function getCreate(Request $request)
     {
-        return view();
+        $user = Auth::user();
+        return 'GG';
     }
 
     public function postCreate(Request $request)
     {
         $data = $request->all();
+        $data['user_id'] = Auth::id();
 
         $this->validator($data);
 

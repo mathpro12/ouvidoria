@@ -59,7 +59,7 @@ class CreateBaseStructure extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('type_id')->unsigned();
             $table->integer('secretary_id')->unsigned();
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->unsigned()->default(1);
             $table->longText('description');
 
             $table->timestamps();

@@ -31,7 +31,7 @@ Route::prefix('register')->group(function () {
 Route::prefix('/login')->group(function () {
     Route::get('/', [
         'uses' => 'Auth\LoginController@getLogin',
-        'as' => 'get.login',
+        'as' => 'login',
     ]);
 
     Route::post('/', [

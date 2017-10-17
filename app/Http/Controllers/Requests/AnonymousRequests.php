@@ -52,8 +52,6 @@ class AnonymousRequestsController extends Controller
         $this->validator($data);
 
         try {
-            $data['status_id'] = 1;
-
             $request = RequestModel::create($data);
             $request->hash = Hashids::encode($request->id);
             $request->save();
