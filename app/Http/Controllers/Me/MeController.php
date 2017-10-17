@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Me;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Request;
 
-class MeController
+class MeController extends Controller
 {
     public function __construct()
     {
