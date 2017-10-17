@@ -60,7 +60,7 @@ class CreateBaseStructure extends Migration
             $table->integer('type_id')->unsigned();
             $table->integer('secretary_id')->unsigned();
             $table->integer('status_id')->unsigned();
-            $table->string('description');
+            $table->longText('description');
 
             $table->timestamps();
 

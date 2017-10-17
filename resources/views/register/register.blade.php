@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-6">
 
-        <form method="POST" action="{{ route('post.create') }}">
+        <form method="POST" action="{{ route('post.register') }}">
             {!! csrf_field() !!}
 
             <div class="form-group">
