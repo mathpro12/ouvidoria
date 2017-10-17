@@ -64,3 +64,9 @@ Route::prefix('/anonymous-requests')->group(function () {
     ]);
 });
 
+Route::prefix('/me')->group(function () {
+    Route::get('/', [
+        'uses' => 'Me\MeController@getHome',
+        'as' => 'get.home',
+    ]);
+});
