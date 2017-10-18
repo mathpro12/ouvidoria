@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/me';
 
     /**
      * Create a new controller instance.
@@ -75,6 +75,15 @@ class LoginController extends Controller
             return back()->withErrors('Dados Inválidos');
         }
 
-        return 'Success';
+        return redirect()
+            ->route('get.home');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()
+            ->route('get.menu');
     }
 }

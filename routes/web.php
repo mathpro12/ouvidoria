@@ -70,3 +70,8 @@ Route::prefix('/me')->group(function () {
         'as' => 'get.home',
     ]);
 });
+
+Route::get('/logout', [
+    'uses' => 'Auth\LoginController@logout',
+    'as' => 'logout',
+]);
