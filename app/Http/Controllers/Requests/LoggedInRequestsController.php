@@ -45,10 +45,19 @@ class LoggedInRequestsController extends Controller
     public function getCreate(Request $request)
     {
         $user = Auth::user();
-        $secretaries = DB::select('select * from secretaries;');
-        $types = DB::select('select * from types;');
+        $secretaries = array_column(
+            (array) DB::select('select * from secretaries;'),
+            'name',
+            'id'
+        );
 
-        return view('requests.logged-in-request', [
+        $types = array_column(
+            (array) DB::select('select * from types;'),
+            'name',
+            'id'
+        );
+
+        return view('requests.anonymous-request', [
             'secretaries' => $secretaries,
             'types' => $types,
         ]);
