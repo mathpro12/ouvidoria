@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Requests;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -44,7 +45,13 @@ class LoggedInRequestsController extends Controller
     public function getCreate(Request $request)
     {
         $user = Auth::user();
-        return 'GG';
+        $secretaries = DB::select('select * from secretaries;');
+        $types = DB::select('select * from types;');
+
+        return view('requests.logged-in-request', [
+            'secretaries' => $secretaries,
+            'types' => $types,
+        ]);
     }
 
     public function postCreate(Request $request)

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Requests;
 
 use App\Http\Controllers\Controller;
+use Hashids;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Log;
-use Hashids;
 
 use App\Models\Request as RequestModel;
 
@@ -42,7 +43,22 @@ class AnonymousRequestsController extends Controller
 
     public function getCreate(Request $request)
     {
-        return 'GG';
+        $secretaries = array_column(
+            (array) DB::select('select * from secretaries;'),
+            'name',
+            'id'
+        );
+
+        $types = array_column(
+            (array) DB::select('select * from types;'),
+            'name',
+            'id'
+        );
+
+        return view('requests.anonymous-request', [
+            'secretaries' => $secretaries,
+            'types' => $types,
+        ]);
     }
 
     public function postCreate(Request $request)
