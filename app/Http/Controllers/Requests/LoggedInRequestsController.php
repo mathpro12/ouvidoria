@@ -57,7 +57,7 @@ class LoggedInRequestsController extends Controller
             'id'
         );
 
-        return view('requests.anonymous-request', [
+        return view('requests.logged-in-request', [
             'secretaries' => $secretaries,
             'types' => $types,
         ]);
