@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Secretary;
+use App\Models\Status;
+
 class Request extends Model
 {
     /**
@@ -21,4 +24,14 @@ class Request extends Model
         'status_id',
         'description',
     ];
+
+    public function secretary()
+    {
+        return $this->belongsTo(Secretary::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

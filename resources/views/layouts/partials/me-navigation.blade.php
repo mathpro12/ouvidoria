@@ -12,8 +12,10 @@
                 <li><a href="{{ route('get.logged-in-requests') }}">Fazer requisição</a></li>
             </ul>
 
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Perfil</a></li>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
         </div>
     </div>

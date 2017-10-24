@@ -1,10 +1,21 @@
 @extends('layouts.master')
 @include('layouts.partials.me-navigation')
 
-<a href="{{ route('logout') }}">Logout</a>
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>Requisições</h4></div>
 
-<ul>
+  <table class="table">
+    <tr>
+        <th>Descrição</th>
+        <th>Estado da solicitação</th>
+        <th>Secretaria</th>
+    </tr>
     @foreach($requests as $request)
-        <li>{{ $request->description }}</li>
+        <tr>
+            <td>{{ $request->description }}</td>
+            <td>{{ $request->status->name }}</td>
+            <td>{{ $request->secretary->name }}</td>
+        </tr>
     @endforeach
-</ul>
+  </table>
+</div>

@@ -8,7 +8,6 @@
 
 <body>
     @include('layouts.partials.errors')
-
     @yield('content')
 </body>
 </html>

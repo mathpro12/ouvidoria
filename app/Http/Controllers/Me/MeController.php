@@ -16,7 +16,10 @@ class MeController extends Controller
 
     public function getHome()
     {
-        $requests = Request::where('user_id', '=', Auth::id())->get();
+        $requests = Request::where('user_id', '=', Auth::id())
+            ->with('secretary')
+            ->with('status')
+            ->get();
 
         return view('me.home', [
             'requests' => $requests,
