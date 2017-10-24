@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@include('layouts.partials.default-navigation')
 
 @section('content')
     <div class="col-md-6">

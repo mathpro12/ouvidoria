@@ -76,7 +76,14 @@ Route::get('/logout', [
     'as' => 'logout',
 ]);
 
-Route::get('/follow-request', [
-    'uses' => 'FollowRequests\FollowRequestController@get',
-    'as' => 'get.follow-request',
-]);
+Route::prefix('/follow-request')->group(function () {
+    Route::get('/', [
+        'uses' => 'FollowRequests\FollowRequestController@get',
+        'as' => 'get.follow-request',
+    ]);
+
+    Route::post('/', [
+        'uses' => 'FollowRequests\FollowRequestController@post',
+        'as' => 'get.follow-request',
+    ]);
+});
