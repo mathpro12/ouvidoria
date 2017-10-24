@@ -84,6 +84,6 @@ Route::prefix('/follow-request')->group(function () {
 
     Route::post('/', [
         'uses' => 'FollowRequests\FollowRequestController@post',
-        'as' => 'get.follow-request',
+        'as' => 'post.follow-request',
     ]);
 });
