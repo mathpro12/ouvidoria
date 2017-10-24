@@ -7,7 +7,10 @@
 </head>
 
 <body>
-    @include('layouts.partials.errors')
-    @yield('content')
+    <div class="col-md-10">
+        @include('layouts.partials.errors')
+        @include('layouts.partials.alert-info')
+        @yield('content')
+    </div>
 </body>
 </html>

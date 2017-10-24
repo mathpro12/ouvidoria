@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @include('layouts.partials.me-navigation')
 
+@section('content')
 <div class="panel panel-default">
   <div class="panel-heading"><h4>Requisições</h4></div>
 
@@ -19,3 +20,4 @@
     @endforeach
   </table>
 </div>
+@endsection

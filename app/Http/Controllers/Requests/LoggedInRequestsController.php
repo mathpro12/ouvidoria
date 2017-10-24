@@ -73,11 +73,14 @@ class LoggedInRequestsController extends Controller
         try {
             $request = RequestModel::create($data);
 
-            return 'Saved';
+            return redirect()
+                ->route('get.home');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return 'Failed';
+        return redirect()
+            ->back()
+            ->withErrors('Nos desculpe, não foi possível realizar o cadastro da solicitação!');
     }
 }

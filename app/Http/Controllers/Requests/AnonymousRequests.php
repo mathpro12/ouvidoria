@@ -72,11 +72,15 @@ class AnonymousRequestsController extends Controller
             $request->hash = Hashids::encode($request->id);
             $request->save();
 
-            return 'Saved';
+            return redirect()
+                ->route('get.follow-request')
+                ->with('status', sprintf('Hash: %s', $request->hash));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
 
-        return 'Failed';
+        return redirect()
+            ->back()
+            ->withErrors('Nos desculpe, não foi possível realizar o cadastro da solicitação!');
     }
 }

@@ -75,3 +75,8 @@ Route::get('/logout', [
     'uses' => 'Auth\LoginController@logout',
     'as' => 'logout',
 ]);
+
+Route::get('/follow-request', [
+    'uses' => 'FollowRequests\FollowRequestController@get',
+    'as' => 'get.follow-request',
+]);
