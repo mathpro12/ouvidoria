@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Fazer requisição</a></li>
+                <li><a href="{{ route('get.logged-in-requests') }}">Fazer requisição</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
