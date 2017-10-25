@@ -74,7 +74,8 @@ class LoggedInRequestsController extends Controller
             $request = RequestModel::create($data);
 
             return redirect()
-                ->route('get.home');
+                ->route('get.home')
+                ->with('success', 'Nova requisição realizada com sucesso!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }

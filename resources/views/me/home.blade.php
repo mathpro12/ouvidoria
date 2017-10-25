@@ -2,9 +2,8 @@
 @include('layouts.partials.me-navigation')
 
 @section('content')
-<div class="panel panel-default">
-  <div class="panel-heading"><h4>Requisições</h4></div>
-
+<div class="container" align="center"><h4>Requisições</h4></div>
+<div class="col-md-10 col-md-offset-2">
   <table class="table">
     <tr>
         <th>Descrição</th>
