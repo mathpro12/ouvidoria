@@ -32,6 +32,11 @@
             </div>
 
             <div class="form-group">
+                <label for="description">Assunto</label>
+                <input type="text" name="subject" class="form-control" maxlength="25"></input>
+            </div>
+
+            <div class="form-group">
                 <label for="description">Descrição</label>
                 <textarea name="description" class="form-control" maxlength="500" cols="5" rows="6"></textarea>
             </div>

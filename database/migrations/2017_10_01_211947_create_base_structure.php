@@ -77,6 +77,7 @@ class CreateBaseStructure extends Migration
             $table->integer('type_id')->unsigned();
             $table->integer('secretary_id')->unsigned();
             $table->integer('status_id')->unsigned()->default(1);
+            $table->string('subject', 25);
             $table->longText('description');
 
             $table->timestamps();
@@ -96,6 +97,7 @@ class CreateBaseStructure extends Migration
     public function down()
     {
         Schema::drop('requests');
+        Schema::drop('employees');
         Schema::drop('users');
         Schema::drop('statuses');
         Schema::drop('secretaries');

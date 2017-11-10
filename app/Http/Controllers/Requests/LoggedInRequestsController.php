@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Log;
 
 use App\Models\Request as RequestModel;
+use App\Models\Secretary;
 
 class LoggedInRequestsController extends Controller
 {
@@ -32,6 +33,7 @@ class LoggedInRequestsController extends Controller
             'user_id' => 'required|integer',
             'type_id' => 'required|integer',
             'secretary_id' => 'required|integer',
+            'subject' => 'required|max:25',
             'description' => 'required',
         ]);
 
@@ -46,7 +48,7 @@ class LoggedInRequestsController extends Controller
     {
         $user = Auth::user();
         $secretaries = array_column(
-            (array) DB::select('select * from secretaries;'),
+            (array) Secretary::get()->all(),
             'name',
             'id'
         );

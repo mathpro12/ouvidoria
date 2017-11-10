@@ -22,6 +22,7 @@ class Request extends Model
         'type_id',
         'secretary_id',
         'status_id',
+        'subject',
         'description',
     ];
 

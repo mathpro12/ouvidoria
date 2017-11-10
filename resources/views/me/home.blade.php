@@ -9,12 +9,14 @@
         <th>Descrição</th>
         <th>Estado da solicitação</th>
         <th>Secretaria</th>
+        <th>Data de Solicitação</th>
     </tr>
     @foreach($requests as $request)
         <tr>
-            <td>{{ $request->description }}</td>
+            <td>{{ $request->subject }}</td>
             <td>{{ $request->status->name }}</td>
             <td>{{ $request->secretary->name }}</td>
+            <td>{{ $request->created_at }}</td>
         </tr>
     @endforeach
   </table>

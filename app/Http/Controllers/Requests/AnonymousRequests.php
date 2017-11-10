@@ -31,6 +31,7 @@ class AnonymousRequestsController extends Controller
         $validator = Validator::make($request, [
             'type_id' => 'required|integer',
             'secretary_id' => 'required|integer',
+            'subject' => 'required|max:25',
             'description' => 'required',
         ]);
 
