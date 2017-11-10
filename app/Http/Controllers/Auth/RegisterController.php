@@ -51,7 +51,8 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'cpf' => 'required|size:14',
+            'password_confirmation' => 'required',
+            'cpf' => 'required|size:14|unique:users',
             'address' => 'required|max:255',
             'number' => 'required|max:255',
             'address_suplement' => 'required|max:255',
@@ -61,7 +62,7 @@ class RegisterController extends Controller
         ]);
 
         if($validator->fails()) {
-            throw new \Exception($validator->errors());
+            return false;
         }
 
         return true;
@@ -82,13 +83,25 @@ class RegisterController extends Controller
     {
         $data = $request->all();
 
-        $this->validator($data);
+        if (!$this->validator($data)) {
+            return back()
+                ->withInput($request->input())
+                ->withErrors('Dados Incorretos. Todos os campos com * devem ser preenchidos e a senha deve ter ao menos 6 caracteres');
+        }
+
+        if ($request->get('password') != $request->get('password_confirmation')) {
+            return back()
+                ->withErrors('A senha não confere!')
+                ->withInput($request->input());
+        }
 
         $data['password'] = Hash::make($data['password']);
 
         try {
             $user = User::create($data);
-            return 'Saved';
+            return redirect()
+                ->route('login')
+                ->with('status', 'Você foi cadastrado com sucesso no sistema');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
