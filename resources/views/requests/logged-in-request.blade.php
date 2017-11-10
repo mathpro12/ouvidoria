@@ -2,7 +2,7 @@
 @include('layouts.partials.me-navigation')
 
 @section('content')
-    <div class="col-md-6">
+    <div class="col-md-7 col-md-offset-3">
 
         <form method="POST" action="{{ route('post.logged-in-requests') }}">
             {!! csrf_field() !!}
@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="description">Descrição</label>
-                <input name="description" type="text-area" class="form-control" id="description">
+                <textarea name="description" class="form-control" maxlength="500" cols="5" rows="6"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>

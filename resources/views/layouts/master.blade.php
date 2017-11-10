@@ -8,9 +8,12 @@
 
 <body>
     <div class="col-md-10">
-        @include('layouts.partials.errors')
-        @include('layouts.partials.alert-info')
-        @include('layouts.partials.success-alert')
+        <div class="col-md-11 col-md-offset-2">
+            @include('layouts.partials.errors')
+            @include('layouts.partials.alert-info')
+            @include('layouts.partials.success-alert')
+        </div>
+
         @yield('content')
     </div>
 </body>
