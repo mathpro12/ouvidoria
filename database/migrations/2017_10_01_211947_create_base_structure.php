@@ -53,6 +53,23 @@ class CreateBaseStructure extends Migration
             $table->timestamps();
         });
 
+        Schema::create('employees', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('cpf', 14);
+            $table->string('address');
+            $table->string('number');
+            $table->string('address_suplement');
+            $table->string('neighborhood');
+            $table->string('city');
+            $table->string('state');
+
+            $table->string('login');
+            $table->string('password');
+
+            $table->timestamps();
+        });
+
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('hash', 8)->nullable();
