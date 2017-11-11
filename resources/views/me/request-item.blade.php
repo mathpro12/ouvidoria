@@ -5,6 +5,7 @@
 <div class="container" align="center"><h4>Solicitação</h4></div>
 
 <div class="col-md-8 col-md-offset-3">
+    <br>
     <div class="input-group">
         <span class="input-group-addon">Secretaria</span>
         <input class="form-control" value="{{ $request->secretary->name }}" readonly>

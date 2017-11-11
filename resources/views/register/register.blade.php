@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group">
-                <label for="address">Endereço</label>
+                <label for="address">Logradouro</label>
                 <input name="address" type="text" class="form-control" id="address" placeholder="Rua A" value="{{ old('address') }}">
             </div>
 

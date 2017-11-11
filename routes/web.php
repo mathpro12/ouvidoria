@@ -74,6 +74,11 @@ Route::prefix('/me')->group(function () {
         'uses' => 'Me\MeRequestController@get',
         'as' => 'get.me.request',
     ]);
+
+    Route::get('/profile', [
+        'uses' => 'Me\MeController@getProfile',
+        'as' => 'get.me.profile',
+    ]);
 });
 
 Route::get('/logout', [

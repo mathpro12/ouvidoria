@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @include('layouts.partials.default-navigation')
 
-<div class="col-md-6 col-md-offset-2">
+<div class="col-md-4 col-md-offset-3">
 
     <form method="POST" action="{{ route('post.follow-request') }}">
         {!! csrf_field() !!}
