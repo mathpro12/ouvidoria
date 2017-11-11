@@ -5,24 +5,30 @@
 <div class="container" align="center"><h4>Solicitação</h4></div>
 
 <div class="col-md-10 col-md-offset-2">
-    <label>Secretaria</label>
-    <div class="col-lg-10">
-        <input value="{{ $request->secretary->name }}"></input>
+    <div class="input-group">
+        <span class="input-group-addon">Secretaria</span>
+        <input class="form-control" value="{{ $request->secretary->name }}" readonly>
     </div>
-
-    <label>Assunto</label>
-    <div class="col-lg-10">
-        <input value="{{ $request->subject }}"></input>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">Assunto</span>
+        <input class="form-control" value="{{ $request->subject }}" readonly>
     </div>
-
-    <label>Data de Solicitação</label>
-    <div class="col-lg-10">
-        <input value="{{ $request->created_at }}"></input>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">Data de Solicitação</span>
+        <input class="form-control" value="{{ $request->created_at }}" readonly>
     </div>
-
-    <label>Descrição</label>
-    <div class="col-lg-10">
-        <textarea value="{{ $request->secretary }}"></textarea>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">Estado da Solicitação</span>
+        <input class="form-control" value="{{ $request->status->name }}" readonly>
     </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">Descrição</span>
+        <textarea class="form-control" rows="8" readonly>{{ $request->description }}</textarea>
+    </div>
+    <br>
 </div>
 @endsection
