@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordReset;
 use App\Models\User;
 
 class ResetPasswordController extends Controller
@@ -63,12 +64,28 @@ class ResetPasswordController extends Controller
                 ->withErrors('Esse email não foi encontrado em nosso sistema!');
         }
 
-        $user = User::whereEmail($request->get('email'))->first();
+        try {
+            $user = User::whereEmail($request->get('email'))->first();
 
-        $random = Hashids::encode(Carbon::now()->timestamp);
-        $newPassword = substr($random, 0, 6);
+            $random = Hashids::encode(Carbon::now()->timestamp);
+            $newPassword = substr($random, 0, 6);
 
-        $user->password = Hash::make($newPassword);
-        $user->save();
+            $user->password = Hash::make($newPassword);
+            $user->save();
+
+            Mail::to($user->email)
+                ->send(new PasswordReset($user, $newPassword));
+
+            return redirect()
+                ->route('login')
+                ->with(['success' => 'Um email de redefinição de senha foi enviado!']);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
+
+        return redirect()
+            ->back()
+            ->withInput($request->all())
+            ->withErrors('Desculpe-nos. Houve um erro ao tentar enviar email de renovação de senha');
     }
 }
