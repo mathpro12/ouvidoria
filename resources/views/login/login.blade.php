@@ -21,6 +21,8 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
 
+        <a href="{{ route('get.password-reset') }}">Esqueci minha senha</a>
+
     </div>
 </div>
 @endsection

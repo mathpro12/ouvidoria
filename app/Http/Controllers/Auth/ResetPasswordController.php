@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class ResetPasswordController extends Controller
 {
@@ -35,5 +40,27 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function get()
+    {
+        return view('login.password-reset');
+    }
+
+    public function post(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|exists:users',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->withErrors('Esse email não foi encontrado em nosso sistema!');
+        }
+
+        $user = User::whereEmail($request->get('email'))->first();
+        dd($user);
     }
 }

@@ -97,3 +97,15 @@ Route::prefix('/follow-request')->group(function () {
         'as' => 'post.follow-request',
     ]);
 });
+
+Route::prefix('/password-reset')->group(function () {
+    Route::get('/', [
+        'uses' => 'Auth\ResetPasswordController@get',
+        'as' => 'get.password-reset',
+    ]);
+
+    Route::post('/', [
+        'uses' => 'Auth\ResetPasswordController@post',
+        'as' => 'post.password-reset',
+    ]);
+});
