@@ -18,7 +18,12 @@
     <br>
     <div class="input-group">
         <span class="input-group-addon">Data de Solicitação</span>
-        <input class="form-control" value="{{ $request->created_at }}" readonly>
+        <input class="form-control" value="{{ parse_timestamp($request->created_at->timestamp) }}" readonly>
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">Data da Última Atualização</span>
+        <input class="form-control" value="{{ parse_timestamp($request->updated_at->timestamp) }}" readonly>
     </div>
     <br>
     <div class="input-group">
