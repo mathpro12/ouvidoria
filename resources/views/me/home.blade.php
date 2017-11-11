@@ -6,7 +6,7 @@
 <div class="col-md-10 col-md-offset-2">
   <table class="table">
     <tr>
-        <th>Descrição</th>
+        <th>Assunto</th>
         <th>Estado da solicitação</th>
         <th>Secretaria</th>
         <th>Data de Solicitação</th>
