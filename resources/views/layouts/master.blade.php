@@ -8,7 +8,7 @@
 
 <body>
     <div class="col-md-10">
-        <div class="col-md-11 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-2">
             @include('layouts.partials.errors')
             @include('layouts.partials.alert-info')
             @include('layouts.partials.success-alert')
