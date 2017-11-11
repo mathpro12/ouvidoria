@@ -69,6 +69,11 @@ Route::prefix('/me')->group(function () {
         'uses' => 'Me\MeController@getHome',
         'as' => 'get.home',
     ]);
+
+    Route::get('/request/{id}', [
+        'uses' => 'Me\MeRequestController@get',
+        'as' => 'get.me.request',
+    ]);
 });
 
 Route::get('/logout', [

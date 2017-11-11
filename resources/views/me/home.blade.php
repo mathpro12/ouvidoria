@@ -13,7 +13,7 @@
     </tr>
     @foreach($requests as $request)
         <tr>
-            <td>{{ $request->subject }}</td>
+            <td><a href="{{ route('get.me.request',$request->id)}}">{{ $request->subject }}</a></td>
             <td>{{ $request->status->name }}</td>
             <td>{{ $request->secretary->name }}</td>
             <td>{{ $request->created_at }}</td>
