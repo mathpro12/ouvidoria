@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Hashids;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -67,6 +68,7 @@ class ResetPasswordController extends Controller
         $random = Hashids::encode(Carbon::now()->timestamp);
         $newPassword = substr($random, 0, 6);
 
-        dd($newPassword);
+        $user->password = Hash::make($newPassword);
+        $user->save();
     }
 }
