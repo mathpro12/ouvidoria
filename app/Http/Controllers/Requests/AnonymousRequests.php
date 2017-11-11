@@ -73,9 +73,12 @@ class AnonymousRequestsController extends Controller
             $request->hash = Hashids::encode($request->id);
             $request->save();
 
+            $message = 'ATENÇÃO! Esse é o seu protocolo para acompanhar o andamento da sua solicitação: %s.' .
+                'Anote-o, pois é a única forma de você descobrir se sua solicitação está sendo atendida!';
+
             return redirect()
                 ->route('get.follow-request')
-                ->with('status', sprintf('Hash: %s', $request->hash));
+                ->with('status', sprintf($message, $request->hash));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
