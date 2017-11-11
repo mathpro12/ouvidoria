@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 use App\Models\User;
 
@@ -62,6 +63,7 @@ class RegisterController extends Controller
         ]);
 
         if($validator->fails()) {
+            Log::error($validator->errors());
             return false;
         }
 
@@ -96,6 +98,7 @@ class RegisterController extends Controller
         }
 
         $data['password'] = Hash::make($data['password']);
+        dd($data['password']);
 
         try {
             $user = User::create($data);

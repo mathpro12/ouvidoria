@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Hashids;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,6 +63,10 @@ class ResetPasswordController extends Controller
         }
 
         $user = User::whereEmail($request->get('email'))->first();
-        dd($user);
+
+        $random = Hashids::encode(Carbon::now()->timestamp);
+        $newPassword = substr($random, 0, 6);
+
+        dd($newPassword);
     }
 }
