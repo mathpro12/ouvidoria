@@ -98,7 +98,6 @@ class RegisterController extends Controller
         }
 
         $data['password'] = Hash::make($data['password']);
-        dd($data['password']);
 
         try {
             $user = User::create($data);
