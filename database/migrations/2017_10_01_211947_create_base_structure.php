@@ -21,7 +21,7 @@ class CreateBaseStructure extends Migration
             $table->string('cpf', 14);
             $table->string('address');
             $table->string('number');
-            $table->string('address_suplement');
+            $table->string('address_suplement')->nullable();
             $table->string('neighborhood');
             $table->string('city');
             $table->string('state');

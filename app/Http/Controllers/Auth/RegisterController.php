@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'cpf' => 'required|size:14|unique:users',
             'address' => 'required|max:255',
             'number' => 'required|max:255',
-            'address_suplement' => 'required|max:255',
+            'address_suplement' => 'max:255',
             'neighborhood' => 'required|max:255',
             'state' => 'required|max:25',
             'city' => 'required|max:255',
