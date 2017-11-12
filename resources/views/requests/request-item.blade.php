@@ -1,5 +1,12 @@
 @extends('layouts.master')
-@include('layouts.partials.me-navigation')
+
+@if (isset($user))
+    @include('layouts.partials.me-navigation')
+@endif
+
+@if (!isset($user))
+    @include('layouts.partials.default-navigation')
+@endif
 
 @section('content')
 <div class="container" align="center"><h4>Solicitação</h4></div>

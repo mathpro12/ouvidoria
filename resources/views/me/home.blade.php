@@ -2,7 +2,8 @@
 @include('layouts.partials.me-navigation')
 
 @section('content')
-<div class="container" align="center"><h4>Requisições</h4></div>
+<div class="container" align="center"><h4>Minhas Solicitações</h4></div>
+<br>
 <div class="col-md-10 col-md-offset-2">
   <table class="table">
     <tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FollowRequests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Log;
 use Validator;
 
 use App\Models\Request as RequestModel;
@@ -34,13 +35,23 @@ class FollowRequestController extends Controller
         }
 
         try {
-            $request = RequestModel::where('hash', '=', $request->get('hash'))->first();
+            $dbRequest = RequestModel::where('hash', '=', $request->get('hash'))->first();
 
-            return $request;
+            if (count($dbRequest) == 0) {
+                return redirect()
+                    ->back()
+                    ->withErrors('Esse protocolo não foi encontrado em nosso sistema!');
+            }
+
+            return view('requests.request-item', [
+                'request' => $dbRequest,
+            ]);
         } catch(\Exception $e) {
+            Log::error($e->getMessage());
+
             return redirect()
                 ->back()
-                ->withErrors('Esse protocolo não foi encontrado em nosso sistema!');
+                ->withErrors('Desculpe-nos. Houve um erro ao tentar encontrar a solicitação');
         }
     }
 }

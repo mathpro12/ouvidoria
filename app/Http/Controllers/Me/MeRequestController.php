@@ -21,7 +21,8 @@ class MeRequestController extends Controller
             ->with('status')
             ->first();
 
-        return view('me.request-item', [
+        return view('requests.request-item', [
+            'user' => Auth::user(),
             'request' => $request,
         ]);
     }
