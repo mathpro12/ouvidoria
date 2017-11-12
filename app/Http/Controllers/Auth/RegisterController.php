@@ -73,8 +73,6 @@ class RegisterController extends Controller
         ]);
 
         if($validator->fails()) {
-            Log::error($validator->errors());
-
             return back()
                 ->withInput($request->input())
                 ->withErrors($validator->errors());
@@ -82,7 +80,7 @@ class RegisterController extends Controller
 
         if ($request->get('password') != $request->get('password_confirmation')) {
             return back()
-                ->withErrors('A senha não confere!')
+                ->withErrors('As senhas não conferem!')
                 ->withInput($request->input());
         }
 
