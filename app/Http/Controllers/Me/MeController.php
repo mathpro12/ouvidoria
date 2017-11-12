@@ -41,7 +41,17 @@ class MeController extends Controller
 
     public function putProfile(Request $request)
     {
-        if (!$this->validator($request->all())) {
+        $data = $request->only([
+            'name',
+            'address',
+            'number',
+            'address_suplement',
+            'neighborhood',
+            'state',
+            'city',
+        ]);
+
+        if (!$this->validator($data)) {
             return back()
                 ->withInput($request->input())
                 ->withErrors('Dados Incorretos. Todos os campos com * devem ser preenchidos');
@@ -49,7 +59,7 @@ class MeController extends Controller
 
         $user = User::whereId(Auth::id())->first();
 
-        foreach ($request->all() as $field => $value) {
+        foreach ($data as $field => $value) {
             $user->$field = $value;
         }
 
@@ -67,8 +77,6 @@ class MeController extends Controller
     {
         $validator = Validator::make($request, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'cpf' => 'required|size:14',
             'address' => 'required|max:255',
             'number' => 'required|max:255',
             'address_suplement' => 'required|max:255',
