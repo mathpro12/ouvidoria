@@ -44,11 +44,21 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Returns the view of register
      */
-    protected function validator(array $request)
+    protected function getCreate()
     {
-        $validator = Validator::make($request, [
+        return view('register.register');
+    }
+
+    /**
+     * Create a new user after passing validation
+     */
+    protected function postCreate(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:6',
@@ -64,31 +74,10 @@ class RegisterController extends Controller
 
         if($validator->fails()) {
             Log::error($validator->errors());
-            return false;
-        }
 
-        return true;
-    }
-
-    /**
-     * Returns the view of register
-     */
-    protected function getCreate()
-    {
-        return view('register.register');
-    }
-
-    /**
-     * Create a new user after passing validation
-     */
-    protected function postCreate(Request $request)
-    {
-        $data = $request->all();
-
-        if (!$this->validator($data)) {
             return back()
                 ->withInput($request->input())
-                ->withErrors('Dados Incorretos. Todos os campos com * devem ser preenchidos e a senha deve ter ao menos 6 caracteres');
+                ->withErrors($validator->errors());
         }
 
         if ($request->get('password') != $request->get('password_confirmation')) {
