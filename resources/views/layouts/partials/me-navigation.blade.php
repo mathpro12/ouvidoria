@@ -16,7 +16,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ route('get.me.profile') }}">Editar Perfil</a></li>
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li><a href="{{ route('logout') }}">Sair</a></li>
                 </ul>
             </div>
         </div>
