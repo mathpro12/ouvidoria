@@ -69,6 +69,7 @@ class LoggedInRequestsController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
+        $data['status_id'] = 1;
 
         $this->validator($data);
 
