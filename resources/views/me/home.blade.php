@@ -5,9 +5,6 @@
 <div class="container" align="center"><h4>Minhas Solicitações</h4></div>
 <br>
 <div class="col-md-10 col-md-offset-2">
-  @if (count($requests == 0))
-    <h1>Você não possui solicitações ainda!</h1>
-  @endif
   <table class="table">
     <tr>
         <th>Assunto</th>
