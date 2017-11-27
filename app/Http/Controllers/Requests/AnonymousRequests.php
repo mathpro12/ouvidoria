@@ -67,6 +67,8 @@ class AnonymousRequestsController extends Controller
         $data = $request->all();
 
         $this->validator($data);
+        
+        $data['status_id'] = 1;
 
         try {
             $request = RequestModel::create($data);
