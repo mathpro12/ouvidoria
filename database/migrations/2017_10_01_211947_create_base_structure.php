@@ -70,6 +70,19 @@ class CreateBaseStructure extends Migration
             $table->timestamps();
         });
 
+        Schema::create('stages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('request_id');
+            $table->integer('employee_id');
+            $table->integer('status_id');
+
+            $table->timestamps();
+
+            $table->foreign('request_id')->references('id')->on('requests');
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('status_id')->references('id')->on('statuses');
+        });
+
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('hash', 8)->nullable();
