@@ -91,8 +91,9 @@ class CreateBaseStructure extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('request_id')->unsigned();
-            $table->integer('employee_id')->unsigned();
+            $table->integer('employee_id')->unsigned()->nullable();
             $table->integer('status_id')->unsigned();
+            $table->string('answer')->nullable();
 
             $table->timestamps();
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Log;
 
 use App\Models\Request as RequestModel;
+use App\Models\Stage;
 
 class AnonymousRequestsController extends Controller
 {
@@ -67,13 +68,18 @@ class AnonymousRequestsController extends Controller
         $data = $request->all();
 
         $this->validator($data);
-        
+
         $data['status_id'] = 1;
 
         try {
             $request = RequestModel::create($data);
             $request->hash = Hashids::encode($request->id);
             $request->save();
+
+            $stage = Stage::create([
+                'request_id' => $request->id,
+                'status_id' => $requests->status_id,
+            ]);
 
             $message = 'ATENÇÃO! Esse é o seu protocolo para acompanhar o andamento da sua solicitação!.' .
                 'Anote-o, pois é a única forma de você descobrir se sua solicitação está sendo atendida!';

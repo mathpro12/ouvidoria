@@ -4,8 +4,101 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Secretary;
+use App\Models\Status;
+use App\Models\Type;
+
 class seed_secretaries_types_and_status_table extends Seeder
 {
+    public $secretaries = [
+        [
+            'name' => 'Secretaria Municipal de Ação Social',
+            'responsible' => 'Valcir Carlos Martins',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Administração',
+            'responsible' => 'Flávio Capdeville de Meira',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Agricultura, Desenvolvimento Econômico, Pecuária e Abastecimento',
+            'responsible' => 'Andressa Rezende Jardim',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Educação',
+            'responsible' => 'Sônia Aparecida Barcelos Maciel',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Esportes, Lazer e Eventos',
+            'responsible' => 'Roberto César de Oliveira Azevedo',
+        ],
+        [
+            'name' => 'Secretaria Municipal da Fazenda',
+            'responsible' => 'Marcio Rogério dos Santos',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Governo',
+            'responsible' => 'Ricardo Prado Parreiras',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Meio Ambiente e Desenvolvimento Sustentavel',
+            'responsible' => 'Daniel Hílario Lima Freitas',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Obras e Serviços Públicos',
+            'responsible' => 'Alcimar Barcelos',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Planejamento e Coordenação',
+            'responsible' => 'Vânia Alves Estevão',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Saúde',
+            'responsible' => 'Junio de Araújo Alves',
+        ],
+        [
+            'name' => 'Secretaria Municipal de Turismo e Cultura',
+            'responsible' => 'Marcos Paulo de Andrade Amabis',
+        ],
+    ];
+
+    public $types = [
+        [
+            'name' => 'Solicitação',
+            'description' => 'Comunicação verbal ou escrita que embora também possa indicar insatisfação, contenha requerimento de atendimento ou acesso às ações e serviços da Prefeitura',
+        ],
+
+        [
+            'name' => 'Reclamação',
+            'description' => 'Comunicação verbal ou escrita que relate insatisfação em relação às ações e serviços prestados pela Prefeitura, sem conteúdo de requerimento',
+        ],
+
+        [
+            'name' => 'Sugestão',
+            'description' => 'Comunicação verbal ou escrita que proponha ação considerada útil à melhoria dos serviços prestados pela Prefeitura',
+        ],
+
+        [
+            'name' => 'Denúncia',
+            'description' => 'Comunicação verbal ou escrita que indica irregularidade na administração ou no atendimento por órgão ou entidade pública da Prefeitura',
+        ],
+
+        [
+            'name' => 'Elogio',
+            'description' => 'Comunicação verbal ou escrita que demonstre satisfação ou agradecimento por serviço prestado pela Prefeitura',
+        ],
+
+        [
+            'name' => 'Informação',
+            'description' => 'Solicitação de orientação ou ensinamento relacionado à área de atuação da Prefeitura',
+        ],
+    ];
+
+    public $statuses = [
+        'Iniciado',
+        'Recebido',
+        'Encaminhado',
+        'Finalizado',
+    ];
     /**
      * Run the database seeds.
      *
@@ -13,25 +106,24 @@ class seed_secretaries_types_and_status_table extends Seeder
      */
     public function run()
     {
-        DB::statement("
-            INSERT INTO types (name, description, created_at, updated_at) VALUES ('Solicitação', 'Solitações Diversas', Carbon::now(), Carbon::now());
-            INSERT INTO types (name, description, created_at, updated_at) VALUES ('Reclamação', 'Reclamações Diversas', Carbon::now(), Carbon::now());
-            INSERT INTO types (name, description, created_at, updated_at) VALUES ('Sugestão', 'Sugestões Diversas', Carbon::now(), Carbon::now());
-            INSERT INTO types (name, description, created_at, updated_at) VALUES ('Denúncia', 'Denúncias Diversas', Carbon::now(), Carbon::now());
-            INSERT INTO types (name, description, created_at, updated_at) VALUES ('Elogio', 'Elogios Diversas', Carbon::now(), Carbon::now());
+        foreach ($this->secretaries as $secretary) {
+            Secretary::create([
+                'name' => $secretary['name'],
+                'responsible' => $secretary['responsible'],
+            ]);
+        }
 
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Ação Social', 'Valcir Carlos Martins', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Administração', 'Flávio Capdeville de Meira', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Agricultura, Desenvolvimento Econômico, Pecuária e Abastecimento', 'Andressa Rezende Jardim', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Educação', 'Sônia Aparecida Barcelos Maciel', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Esportes, Lazer e Eventos', 'Roberto César de Oliveira Azevedo', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal da Fazenda', 'Marcio Rogério dos Santos', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Governo', 'Ricardo Prado Parreiras', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Meio Ambiente e Desenvolvimento Sustentavel', 'Daniel Hílario Lima Freitas', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Obras e Serviços Públicos', 'Alcimar Barcelos', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Planejamento e Coordenação', 'Vânia Alves Estevão', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Saúde', 'Junio de Araújo Alves', Carbon::now(), Carbon::now());
-            INSERT INTO secretaries (name, responsible, created_at, updated_at) VALUES ('Secretaria Municipal de Turismo e Cultura', 'Marcos Paulo de Andrade Amabis', Carbon::now(), Carbon::now());
-        ");
+        foreach ($this->types as $type) {
+            Type::create([
+                'name' => $type['name'],
+                'description' => $type['description'],
+            ]);
+        }
+
+        foreach ($this->statuses as $status) {
+            Status::create([
+                'name' => $status,
+            ]);
+        }
     }
 }
