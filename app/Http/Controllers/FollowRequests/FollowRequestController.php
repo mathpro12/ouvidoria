@@ -9,6 +9,7 @@ use Log;
 use Validator;
 
 use App\Models\Request as RequestModel;
+use App\Models\Stage;
 
 class FollowRequestController extends Controller
 {
@@ -35,7 +36,14 @@ class FollowRequestController extends Controller
         }
 
         try {
-            $dbRequest = RequestModel::where('hash', '=', $request->get('hash'))->first();
+            $dbRequest = RequestModel::where('hash', '=', $request->get('hash'))
+                ->with('stages')
+                ->first();
+
+            $history = Stage::where('request_id', '=', $dbRequest->id)
+                ->with('employee')
+                ->with('status')
+                ->get();
 
             if (count($dbRequest) == 0) {
                 return redirect()
@@ -45,6 +53,7 @@ class FollowRequestController extends Controller
 
             return view('requests.request-item', [
                 'request' => $dbRequest,
+                'history' => $history,
             ]);
         } catch(\Exception $e) {
             Log::error($e->getMessage());

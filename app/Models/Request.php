@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Secretary;
+use App\Models\Stage;
 use App\Models\Status;
 
 class Request extends Model
@@ -34,5 +35,10 @@ class Request extends Model
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    public function stages()
+    {
+        return $this->hasMany(Stage::class);
     }
 }

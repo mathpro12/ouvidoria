@@ -43,5 +43,17 @@
         <textarea class="form-control" rows="8" readonly>{{ $request->description }}</textarea>
     </div>
     <br>
+    <div class="input-group">
+        <span class="input-group-addon">Histórico</span>
+    </div>
+    <br>
+
+    @foreach($history as $stage)
+        <div class="input-group">
+            <span class="input-group-addon">{{ $stage->status->name }}</span>
+            <input class="form-control" value="{{ $stage->answer }}" readonly>
+        </div>
+    <br>
+    @endforeach
 </div>
 @endsection
