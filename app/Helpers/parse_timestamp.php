@@ -9,6 +9,6 @@ if (!function_exists('parse_timestamp')) {
             return "N/A";
         }
 
-        return Carbon::createFromTimestamp((int) $timestamp)->format('d/m/Y h:i:s');
+        return Carbon::createFromTimestamp((int) $timestamp)->format('d/m/Y H:i:s');
     }
 }
