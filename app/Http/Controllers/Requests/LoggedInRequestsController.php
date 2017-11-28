@@ -76,6 +76,11 @@ class LoggedInRequestsController extends Controller
         try {
             $request = RequestModel::create($data);
 
+            $stage = Stage::create([
+                'request_id' => $request->id,
+                'status_id' => $request->status_id,
+            ]);
+
             return redirect()
                 ->route('get.home')
                 ->with('success', 'Nova requisição realizada com sucesso!');
