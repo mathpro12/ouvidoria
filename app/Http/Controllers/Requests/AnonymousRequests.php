@@ -78,7 +78,7 @@ class AnonymousRequestsController extends Controller
 
             $stage = Stage::create([
                 'request_id' => $request->id,
-                'status_id' => $requests->status_id,
+                'status_id' => $request->status_id,
             ]);
 
             $message = 'ATENÇÃO! Esse é o seu protocolo para acompanhar o andamento da sua solicitação!.' .
