@@ -9,7 +9,7 @@
 @endif
 
 @section('content')
-<div class="container" align="center"><h4>Solicitação</h4></div>
+<div class="container" align="center"><h4>Manifestação</h4></div>
 
 <div class="col-md-6">
     <br>
@@ -24,7 +24,7 @@
     </div>
     <br>
     <div class="input-group">
-        <span class="input-group-addon">Data de Solicitação</span>
+        <span class="input-group-addon">Data</span>
         <input class="form-control" value="{{ parse_timestamp($request->created_at->timestamp) }}" readonly>
     </div>
     <br>
@@ -34,7 +34,7 @@
     </div>
     <br>
     <div class="input-group">
-        <span class="input-group-addon">Estado da Solicitação</span>
+        <span class="input-group-addon">Estado da Manifestação</span>
         <input class="form-control" value="{{ $request->status->name }}" readonly>
     </div>
     <br>

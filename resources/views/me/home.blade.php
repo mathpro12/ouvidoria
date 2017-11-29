@@ -2,16 +2,16 @@
 @include('layouts.partials.me-navigation')
 
 @section('content')
-<div class="container" align="center"><h4>Minhas Solicitações</h4></div>
+<div class="container" align="center"><h4>Minhas Manifestações</h4></div>
 <br>
 <div class="container" align="center">
     <div class="col-md-12">
       <table class="table">
         <tr>
             <th>Assunto</th>
-            <th>Estado da solicitação</th>
+            <th>Estado da Manifestação</th>
             <th>Secretaria</th>
-            <th>Data de Solicitação</th>
+            <th>Data</th>
         </tr>
         @foreach($requests as $request)
             <tr>
