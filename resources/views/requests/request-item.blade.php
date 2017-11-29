@@ -59,7 +59,11 @@
             <tr>
                 <td width="20%">{{ $stage->status->name }}</td>
                 <td width="20%">{{ parse_timestamp($stage->created_at->timestamp) }}</td>
-                <td width="60%">{{ $stage->answer }}</td>
+                @if($stage->answer == '' || $stage->answer == null)
+                    <td width="60%">Não há respostas para esse estado da manifestação!</td>
+                @else
+                    <td width="60%">{{ $stage->answer }}</td>
+                @endif
             </tr>
         @endforeach
   </table>
