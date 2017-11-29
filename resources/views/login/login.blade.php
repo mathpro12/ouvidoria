@@ -10,12 +10,12 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input name="email" type="email" class="form-control" id="email" placeholder="prefeitura@brumadinho.com">
+                <input name="email" type="email" class="form-control" id="email" placeholder="prefeitura@brumadinho.com" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input name="password" type="password" class="form-control" id="password">
+                <input name="password" type="password" class="form-control" id="password" required>
             </div>
 
             <div class="col-md-6">

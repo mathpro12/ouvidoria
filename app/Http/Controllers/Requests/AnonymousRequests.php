@@ -24,25 +24,6 @@ class AnonymousRequestsController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     */
-    protected function validator(array $request)
-    {
-        $validator = Validator::make($request, [
-            'type_id' => 'required|integer',
-            'secretary_id' => 'required|integer',
-            'subject' => 'required|max:25',
-            'description' => 'required',
-        ]);
-
-        if($validator->fails()) {
-            throw new \Exception($validator->errors());
-        }
-
-        return true;
-    }
-
     public function getCreate(Request $request)
     {
         $secretaries = array_column(
@@ -66,10 +47,20 @@ class AnonymousRequestsController extends Controller
     public function postCreate(Request $request)
     {
         $data = $request->all();
-
-        $this->validator($data);
-
         $data['status_id'] = 1;
+
+        $validator = Validator::make($data, [
+            'type_id' => 'required|integer',
+            'secretary_id' => 'required|integer',
+            'subject' => 'required|max:25',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator->errors());
+        }
 
         try {
             $request = RequestModel::create($data);

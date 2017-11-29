@@ -64,7 +64,16 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        $this->validator($request->all());
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator->errors());
+        }
 
         $credentials = $request->only([
             'email',
