@@ -25,26 +25,6 @@ class LoggedInRequestsController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     */
-    protected function validator(array $request)
-    {
-        $validator = Validator::make($request, [
-            'user_id' => 'required|integer',
-            'type_id' => 'required|integer',
-            'secretary_id' => 'required|integer',
-            'subject' => 'required|max:25',
-            'description' => 'required',
-        ]);
-
-        if($validator->fails()) {
-            throw new \Exception($validator->errors());
-        }
-
-        return true;
-    }
-
     public function getCreate(Request $request)
     {
         $user = Auth::user();
@@ -72,7 +52,19 @@ class LoggedInRequestsController extends Controller
         $data['user_id'] = Auth::id();
         $data['status_id'] = 1;
 
-        $this->validator($data);
+        $validator = Validator::make($data, [
+            'user_id' => 'required|integer',
+            'type_id' => 'required|integer',
+            'secretary_id' => 'required|integer',
+            'subject' => 'required|max:25',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator->errors());
+        }
 
         try {
             $request = RequestModel::create($data);

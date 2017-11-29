@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <div class="container" align="center">
+    <div class="col-md-10 col-md-offset-1" align="center">
         @include('layouts.partials.errors')
         @include('layouts.partials.alert-info')
         @include('layouts.partials.success-alert')

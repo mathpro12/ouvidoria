@@ -125,6 +125,8 @@ return [
         'state' => 'estado',
         'city' => 'cidade',
         'number' => 'número',
+        'subject' => 'assunto',
+        'description' => 'descrição',
     ],
 
 ];
