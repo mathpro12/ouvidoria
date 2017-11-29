@@ -12,7 +12,9 @@
             <input name="hash" type="text" class="form-control" id="hash" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <div align="right">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
     </form>
 </div>
 @endsection

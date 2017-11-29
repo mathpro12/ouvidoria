@@ -3,7 +3,7 @@
 @include('layouts.partials.default-navigation')
 
 @section('content')
-    <div class="col-md-5 col-md-offset-4">
+    <div class="col-md-5 col-md-offset-3">
 
         <form method="POST" action="{{ route('post.register') }}">
             {!! csrf_field() !!}
@@ -63,7 +63,9 @@
                 <input name="password_confirmation" type="password" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
         </form>
     </div>
 @endsection

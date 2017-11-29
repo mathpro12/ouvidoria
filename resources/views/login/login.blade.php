@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-4">
 
         <form method="POST" action="{{ route('post.login') }}">
             {!! csrf_field() !!}
@@ -18,11 +18,14 @@
                 <input name="password" type="password" class="form-control" id="password">
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <div class="col-md-6">
+                <a href="{{ route('get.password-reset') }}">Esqueci minha senha</a>
+            </div>
+
+            <div class="col-md-6" align="right">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
         </form>
-
-        <a href="{{ route('get.password-reset') }}">Esqueci minha senha</a>
-
     </div>
 </div>
 @endsection

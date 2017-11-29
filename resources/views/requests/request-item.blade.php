@@ -11,7 +11,7 @@
 @section('content')
 <div class="container" align="center"><h4>Solicitação</h4></div>
 
-<div class="col-md-8 col-md-offset-3">
+<div class="col-md-6">
     <br>
     <div class="input-group">
         <span class="input-group-addon">Secretaria</span>
@@ -42,18 +42,26 @@
         <span class="input-group-addon">Descrição</span>
         <textarea class="form-control" rows="8" readonly>{{ $request->description }}</textarea>
     </div>
+</div>
+
+<div class="col-md-6">
     <br>
     <div class="input-group">
         <span class="input-group-addon">Histórico</span>
     </div>
-    <br>
-
-    @foreach($history as $stage)
-        <div class="input-group">
-            <span class="input-group-addon">{{ $stage->status->name }}</span>
-            <input class="form-control" value="{{ $stage->answer }}" readonly>
-        </div>
-    <br>
-    @endforeach
+    <table class="table" style="width:100%">
+        <tr>
+            <th>Estado da Manifestação</th>
+            <th>Data</th>
+            <th>Resposta</th>
+        </tr>
+        @foreach($history as $stage)
+            <tr>
+                <td width="20%">{{ $stage->status->name }}</td>
+                <td width="20%">{{ parse_timestamp($stage->created_at->timestamp) }}</td>
+                <td width="60%">{{ $stage->answer }}</td>
+            </tr>
+        @endforeach
+  </table>
 </div>
 @endsection

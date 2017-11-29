@@ -2,7 +2,7 @@
 @include('layouts.partials.me-navigation')
 
 @section('content')
-    <div class="col-md-7 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
 
         <form method="POST" action="{{ route('post.logged-in-requests') }}">
             {!! csrf_field() !!}
@@ -41,7 +41,9 @@
                 <textarea name="description" class="form-control" maxlength="500" cols="5" rows="6"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
         </form>
     </div>
 @endsection

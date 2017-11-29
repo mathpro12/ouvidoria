@@ -4,22 +4,24 @@
 @section('content')
 <div class="container" align="center"><h4>Minhas Solicitações</h4></div>
 <br>
-<div class="col-md-10 col-md-offset-2">
-  <table class="table">
-    <tr>
-        <th>Assunto</th>
-        <th>Estado da solicitação</th>
-        <th>Secretaria</th>
-        <th>Data de Solicitação</th>
-    </tr>
-    @foreach($requests as $request)
+<div class="container" align="center">
+    <div class="col-md-12">
+      <table class="table">
         <tr>
-            <td><a href="{{ route('get.me.request', $request->id) }}">{{ $request->subject }}</a></td>
-            <td>{{ $request->status->name }}</td>
-            <td>{{ $request->secretary->name }}</td>
-            <td>{{ parse_timestamp($request->created_at->timestamp) }}</td>
+            <th>Assunto</th>
+            <th>Estado da solicitação</th>
+            <th>Secretaria</th>
+            <th>Data de Solicitação</th>
         </tr>
-    @endforeach
-  </table>
+        @foreach($requests as $request)
+            <tr>
+                <td><a href="{{ route('get.me.request', $request->id) }}">{{ $request->subject }}</a></td>
+                <td>{{ $request->status->name }}</td>
+                <td>{{ $request->secretary->name }}</td>
+                <td>{{ parse_timestamp($request->created_at->timestamp) }}</td>
+            </tr>
+        @endforeach
+      </table>
+    </div>
 </div>
 @endsection

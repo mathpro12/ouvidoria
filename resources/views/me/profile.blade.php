@@ -6,7 +6,7 @@
 
 <form method="POST" action="{{ route('put.me.profile') }}">
     {!! csrf_field() !!}
-    <div class="col-md-5 col-md-offset-4">
+    <div class="col-md-6 col-md-offset-3">
         <br>
 
         <div class="form-group">
@@ -21,7 +21,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon">CPF *</span>
-                <input class="form-control" value="{{ $user->cpf }}" name="cpf"readonly>
+                <input class="form-control" value="{{ $user->cpf }}" name="cpf" readonly>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon">Email *</span>
-                <input class="form-control" value="{{ $user->email }}" name="email"readonly>
+                <input class="form-control" value="{{ $user->email }}" name="email" readonly>
             </div>
         </div>
 
@@ -90,7 +90,9 @@
 
         <br>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <div align="right">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
     </div>
 </form>
 @endsection

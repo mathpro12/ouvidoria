@@ -12,7 +12,9 @@
             <input name="email" type="email" class="form-control" value="{{ old('email') }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <div align="right">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
     </form>
 </div>
 @endsection
