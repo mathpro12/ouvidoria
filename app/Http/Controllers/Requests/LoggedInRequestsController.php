@@ -11,6 +11,7 @@ use Log;
 
 use App\Models\Request as RequestModel;
 use App\Models\Secretary;
+use App\Models\Stage;
 
 class LoggedInRequestsController extends Controller
 {
@@ -83,13 +84,13 @@ class LoggedInRequestsController extends Controller
 
             return redirect()
                 ->route('get.home')
-                ->with('success', 'Nova requisição realizada com sucesso!');
+                ->with('success', 'Nova manifestação realizada com sucesso!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
 
         return redirect()
             ->back()
-            ->withErrors('Nos desculpe, não foi possível realizar o cadastro da solicitação!');
+            ->withErrors('Nos desculpe, não foi possível realizar o cadastro da manifestação!');
     }
 }
