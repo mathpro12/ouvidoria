@@ -45,8 +45,6 @@ class FollowRequestController extends Controller
                 ->with('status')
                 ->get();
 
-            dd($history);
-
             if (count($dbRequest) == 0) {
                 return redirect()
                     ->back()
@@ -62,7 +60,7 @@ class FollowRequestController extends Controller
 
             return redirect()
                 ->back()
-                ->withErrors('Desculpe-nos. Houve um erro ao tentar encontrar a manifestação');
+                ->withErrors($e->getMessage());
         }
     }
 }
