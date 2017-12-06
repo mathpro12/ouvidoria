@@ -45,7 +45,7 @@ class FollowRequestController extends Controller
                 ->with('status')
                 ->get();
 
-            if (count($dbRequest) == 0) {
+            if ($dbRequest == null) {
                 return redirect()
                     ->back()
                     ->withErrors('Esse protocolo não foi encontrado em nosso sistema!');
@@ -60,7 +60,7 @@ class FollowRequestController extends Controller
 
             return redirect()
                 ->back()
-                ->withErrors($e->getMessage());
+                ->withErrors('Desculpe-nos, houve um erro ao tentar buscar a manifestação');
         }
     }
 }
