@@ -60,7 +60,7 @@ class FollowRequestController extends Controller
 
             return redirect()
                 ->back()
-                ->withErrors('Desculpe-nos. Houve um erro ao tentar encontrar a solicitação');
+                ->withErrors('Desculpe-nos. Houve um erro ao tentar encontrar a manifestação');
         }
     }
 }
