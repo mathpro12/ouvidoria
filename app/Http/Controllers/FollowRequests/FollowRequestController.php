@@ -45,6 +45,8 @@ class FollowRequestController extends Controller
                 ->with('status')
                 ->get();
 
+            dd($history);
+
             if (count($dbRequest) == 0) {
                 return redirect()
                     ->back()
